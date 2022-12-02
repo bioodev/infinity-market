@@ -3,6 +3,9 @@ module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],  theme: {
+    fontFamily: {
+      sans: ['Maven Pro'],
+    },
     extend: {},
   },
   plugins: [],
