@@ -7,6 +7,9 @@
     .categorias a {
       @apply p-2 border-solid hover:border-black rounded border hover:shadow-md;
     }
+    .ActiveOption{
+      @apply border-black bg-gray-50 shadow-md;
+    }
   }
 
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;900&display=swap');

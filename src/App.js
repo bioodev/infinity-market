@@ -2,16 +2,16 @@ import "./App.css";
 import Navbar from "./components/NavBar";
 import Sidebar from "./components/Sidebar";
 import ItemListContainer from "./components/ItemListContainer";
-import ItemDetailContainer from "./components/ItemListContainer";
+import ItemDetailContainer from "./components/ItemDetailContainer";
 
 import Footer from "./components/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App h-screen">
-      <BrowserRouter>
-        <div className="grid grid-cols-1 lg:grid-cols-12">
+    <BrowserRouter>
+    <div className="App">
+        <div className="grid grid-auto grid-cols-1 lg:grid-cols-12">
           <div className="bg-white lg:col-span-12 ">
             <Navbar />
           </div>
@@ -24,21 +24,22 @@ function App() {
                 element={<ItemListContainer />}
               />
               <Route
-                path="/product/:itemId"
+                path="/products/:productId"
                 element={<ItemDetailContainer />}
-              />
+              /> 
             </Routes>
           </div>
 
-          <div className="bg-gray-200 lg:col-span-2 lg:z-10">
+          <div className="bg-gray-200 lg:col-span-2">
             <Sidebar />
           </div>
           <div className=" bg-gray-200 lg:col-span-12">
             <Footer />
           </div>
         </div>
-      </BrowserRouter>
     </div>
+    </BrowserRouter>
+
   );
 }
 
