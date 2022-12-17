@@ -5,11 +5,15 @@
 
 @layer components {
     .categorias a {
-      @apply p-2 border-solid hover:border-black rounded border hover:shadow-md;
+      @apply p-2 border border-solid rounded hover:border-black hover:shadow-md;
     }
     .ActiveOption{
-      @apply border-black bg-gray-50 shadow-md;
+      @apply border-black shadow-md bg-gray-50;
     }
+    body{
+      @apply bg-gray-200; 
+    }
+
   }
 
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;900&display=swap');

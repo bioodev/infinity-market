@@ -1,20 +1,26 @@
 import { FaInfinity } from "react-icons/fa";
 import CartWidget from "./CartWidget";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useContext } from 'react'
+import { CartContext } from '../contexts/CartContext'
 
 const Navbar = () => {
 
   const navigate = useNavigate();
+
+  const { getCartCounter } = useContext(CartContext)
+  const totalQuantity = getCartCounter();
+  
   return (
-    <div className="Navbar lg:flex justify-between items-center p-2 ">
-      <div className="logo p-4 lg:p-2 flex items-center justify-center">
-        <NavLink to="/" className="text-3xl flex items-center justify-center flex-wrap">
-          <FaInfinity className="leading-none hover:animate-bounce ease-in-out" />
-          <h1 className="leading-noner text-center font-black p-2 tracking-tighter">INFINITY MARKET</h1>
+    <div className="items-center justify-between p-2 Navbar lg:flex ">
+      <div className="flex items-center justify-center p-4 logo lg:p-2">
+        <NavLink to="/" className="flex flex-wrap items-center justify-center text-3xl">
+          <FaInfinity className="leading-none ease-in-out hover:animate-bounce" />
+          <h1 className="p-2 font-black tracking-tighter text-center leading-noner">INFINITY MARKET</h1>
         </NavLink>
       </div>
-      <div className="navbar-menu p-2">
-        <nav className="categorias gap-2 flex flex-wrap items-center justify-center text-sm ">
+      <div className="p-2 navbar-menu">
+        <nav className="flex flex-wrap items-center justify-center gap-2 text-sm categorias ">
           <NavLink
             to="/"
             className={({ isActive }) => (isActive ? "ActiveOption" : "Option")}
@@ -40,7 +46,7 @@ const Navbar = () => {
             Libros
           </NavLink>
 
-          <CartWidget cartCounter={9} />
+          <CartWidget cartCounter={totalQuantity} />
 
         </nav>
       </div>

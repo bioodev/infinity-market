@@ -35,11 +35,11 @@ const ItemListContainer = () => {
   }, [categoryId]);
 
   if (isLoading) {
-    return <h1 className="p-8">Cargando datos...</h1>;
+    return <div className="flex flex-col items-center justify-center w-full p-8">Cargando datos...</div>;
   }
   return (
-    <div className="ItemListContainer min-h-fit text-4xl flex flex-col items-center justify-center w-full ">
-      <h1 className="text-lg font-black text-gray-600 p-4 pb-0 uppercase ">{ (!categoryId) ? `Todos los productos` : "" }{ (categoryId) ? `${categoryId}` : "" } </h1>
+    <div className="flex flex-col items-center justify-center w-full text-4xl ItemListContainer min-h-fit ">
+      <h1 className="p-4 pb-0 text-lg font-black text-gray-600 uppercase ">{ (!categoryId) ? `Todos los productos` : "" }{ (categoryId) ? `${categoryId}` : "" } </h1>
       <ItemList dataItems={items} />
     </div>
   );

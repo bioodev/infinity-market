@@ -23,7 +23,7 @@ const ItemDetailContainer = () => {
   }, [productId]);
 
   if (isLoading) {
-    return <h1 className="p-8">Cargando datos...</h1>;
+    return <div className="flex flex-col items-center justify-center w-full p-8">Cargando datos...</div>;
   }
   return (
     <div className="flex flex-col items-center justify-center w-full">

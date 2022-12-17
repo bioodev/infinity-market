@@ -9,6 +9,7 @@ const AddItemButton = ({ dataItem, quanty }) => {
     name: dataItem.name,
     price: dataItem.price,
     quantity: quanty,
+    image: dataItem.image
   };
 
   const handleClickAdd = () => {
@@ -17,7 +18,7 @@ const AddItemButton = ({ dataItem, quanty }) => {
   return (
     <button
       onClick={handleClickAdd}
-      className="px-6 py-2 font-black text-base bg-gray-200 rounded active:bg-gray-300 active:shadow-inner hover:shadow-md"
+      className="px-6 py-2 text-base font-black bg-gray-200 rounded active:bg-gray-300 active:shadow-inner hover:shadow-md"
     >
       Agregar al carro
     </button>
