@@ -7,6 +7,8 @@ import Cart from './components/Cart'
 import Footer from "./components/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from "../src/contexts/CartContext";
+import { Toaster } from 'react-hot-toast';
+
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
           <div className="grid grid-cols-1 grid-auto lg:grid-cols-12">
             <div className="bg-white lg:col-span-12 ">
               <Navbar />
+              <Toaster />
             </div>
             <div className="bg-gray-100 lg:col-span-10 lg:shadow-red-600 lg:z-10">
               <Routes>

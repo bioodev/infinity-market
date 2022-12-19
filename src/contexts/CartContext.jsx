@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import toast from 'react-hot-toast';
 
 export const CartContext = createContext([]);
 
@@ -8,6 +9,8 @@ export const CartProvider = ({ children }) => {
   const addToCart = (productToAdd) => {
     if (!isInCart(productToAdd.id)) {
       setCart([...cart, productToAdd]);
+      toast(`Se agregó ${productToAdd.name}`);
+
     }
   };
 
@@ -18,6 +21,17 @@ export const CartProvider = ({ children }) => {
   const removeProduct = (id) => {
     const updateCart = cart.filter((product) => product.id !== id);
     setCart(updateCart);
+    toast(`Se quitó del carrito`);
+  };
+
+  const getTotalCart = () => {
+    let totalCart = 0;
+
+    cart.forEach((product) => {
+      let subTotal = product.price * product.quantity;
+      totalCart += subTotal;
+    });
+    return totalCart;
   };
 
   const getCartCounter = () => {
@@ -31,7 +45,14 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, isInCart, removeProduct, getCartCounter }}
+      value={{
+        cart,
+        addToCart,
+        isInCart,
+        removeProduct,
+        getCartCounter,
+        getTotalCart,
+      }}
     >
       {children}
     </CartContext.Provider>

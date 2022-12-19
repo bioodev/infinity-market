@@ -3,8 +3,14 @@ import { CartContext } from "../contexts/CartContext";
 import { FaMinusCircle } from "react-icons/fa";
 
 const Cart = () => {
-  const { cart, addToCart, isInCart, removeProduct, getCartCounter } =
-    useContext(CartContext);
+  const {
+    cart,
+    addToCart,
+    isInCart,
+    removeProduct,
+    getCartCounter,
+    getTotalCart,
+  } = useContext(CartContext);
   const handleRemove = (id) => removeProduct(id);
 
   return (
@@ -13,7 +19,16 @@ const Cart = () => {
         Carrito de compra
       </h1>
       <div className="grid items-center justify-center w-full grid-cols-1 gap-4 p-4 lg:grid-cols-2">
-        {cart < 1 ? <div className="flex items-center justify-center lg:col-span-2">Carro vacío</div> : ""}
+        {cart < 1 ? (
+          <div className="flex items-center justify-center lg:col-span-2">
+            Carro vacío
+          </div>
+        ) : (
+          <div className="flex items-center justify-center font-black text-md lg:col-span-2">
+          Total: ${getTotalCart()}
+        </div>
+        )}
+
 
         {cart.map((item) => (
           <div
@@ -27,7 +42,9 @@ const Cart = () => {
               <div className="col-span-4 text-lg">{item.name}</div>
               <div className="col-span-4">Precio: ${item.price}</div>
               <div className="col-span-4">Cantidad: {item.quantity}</div>
-              <div className="col-span-4">Subtotal: ${item.quantity * item.price}</div>
+              <div className="col-span-4">
+                Subtotal: ${item.quantity * item.price}
+              </div>
               <div
                 className="flex justify-center col-span-4 cursor-pointer hover:text-red-600 active:text-red-300"
                 onClick={() => handleRemove(item.id)}
