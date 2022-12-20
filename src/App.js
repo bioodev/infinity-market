@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from "../src/contexts/CartContext";
 import { Toaster } from 'react-hot-toast';
+import Checkout from './components/Checkout'
 
 
 function App() {
@@ -34,6 +35,10 @@ function App() {
                 <Route 
                   path="/cart"
                   element={<Cart />}
+                /> 
+                <Route 
+                  path="/checkout"
+                  element={<Checkout />}
                 /> 
               </Routes>
             

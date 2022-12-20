@@ -9,7 +9,7 @@ export const CartProvider = ({ children }) => {
   const addToCart = (productToAdd) => {
     if (!isInCart(productToAdd.id)) {
       setCart([...cart, productToAdd]);
-      toast(`Se agregó ${productToAdd.name}`);
+      toast(`✅ Se agregó ${productToAdd.quantity} de "${productToAdd.name}"`);
 
     }
   };
@@ -21,7 +21,7 @@ export const CartProvider = ({ children }) => {
   const removeProduct = (id) => {
     const updateCart = cart.filter((product) => product.id !== id);
     setCart(updateCart);
-    toast(`Se quitó del carrito`);
+    toast(`⛔ Se quitó el producto del carrito`);
   };
 
   const getTotalCart = () => {
