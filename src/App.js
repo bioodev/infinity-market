@@ -20,7 +20,7 @@ function App() {
             <div className="bg-white lg:col-span-12 ">
               <Navbar />
             </div>
-            <div className="bg-gray-100 lg:col-span-10 lg:shadow-red-600 lg:z-10">
+            <div className="bg-gray-100 lg:col-span-10">
               <Routes>
                 <Route path="/" element={<ItemListContainer />} />
                 <Route

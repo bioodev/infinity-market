@@ -14,7 +14,7 @@ const ItemDetail = ({ dataItem }) => {
           alt={dataItem.name}
         />
       </div>
-      <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center gap-2">
         <h1 className="text-3xl font-bold text-center">{dataItem.name}</h1>
         <h1 className="font-bold uppercase text-md">{dataItem.category}</h1>
         <h1 className="font-bold uppercase text-md">USD ${dataItem.price}</h1>

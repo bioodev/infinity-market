@@ -3,38 +3,18 @@ import { CartContext } from "../contexts/CartContext";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../services/firebaseConfig";
 const Checkout = () => {
-  const { cart, getTotalCart, clearCart } = useContext(CartContext);
-  const [userData, setUserData] = useState({
-      name: "",
-      email: "",
-      phone: "",
-      comments: "",
-  });
-  const [order, setOrder] = useState({})
-
   const navigate = useNavigate();
-
-  const handleCreateOrder = (e) => {
-    e.preventDefault();
-    setOrder({
-      buyer: {
-        name: userData.name,
-        email: userData.email,
-        phone: userData.fono,
-        comments: userData.comments,
-      },
-    items: cart,
-    total: getTotalCart(),
-    });
-    clearCart();
-    toast(`✅ La orden de compra se envio correctamente`);
-    setTimeout(() => {
-      navigate("/");
-    }, 3000);
-  };
-
+  const { cart, getTotalCart, clearCart } = useContext(CartContext);
+  const [order, setOrder] = useState({});
+  const [userData, setUserData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    comments: "",
+  });
   const handleName = (event) => {
     event.persist();
     setUserData((userData) => ({
@@ -63,8 +43,37 @@ const Checkout = () => {
       comments: event.target.value,
     }));
   };
+  const handleCreateOrder = (e) => {
+    const ordenRef = collection(db, "Ordenes-infinity-ecommerce");
+    e.preventDefault();
+    setOrder({
+      buyer: {
+        name: userData.name,
+        email: userData.email,
+        phone: userData.fono,
+        comments: userData.comments,
+      },
+      items: cart,
+      total: getTotalCart(),
+    })
+    addDoc(ordenRef, order)
+      .then((response) => {
+        console.log(response.id)
+        toast(`✅ La orden "${response.id}" de compra se envio correctamente`);
 
-  console.log(order)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(() => {
+        clearCart();
+        setTimeout(() => {
+          navigate("/")
+        }, 3000)
+      })
+  }
+
+  console.log(order);
   return (
     <div className="flex flex-col items-center justify-center w-full min-h-fit">
       <h1 className="p-4 pb-0 text-lg font-black text-gray-600 uppercase ">

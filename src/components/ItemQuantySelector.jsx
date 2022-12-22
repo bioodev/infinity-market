@@ -12,6 +12,14 @@ const ItemQuantySelector = ({ dataItem, addToCart }) => {
     quanty > 1 ? setQuanty((prev) => prev - 1) : console.log("err");
   };
 
+  if (dataItem.stock < 1) {
+    return (
+      <div className="px-6 py-2 text-base font-black bg-gray-200 rounded ">
+        {dataItem.stock > 0 ? quanty : "Stock agotado"}
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-wrap items-center justify-center gap-2">
       <button
@@ -21,7 +29,7 @@ const ItemQuantySelector = ({ dataItem, addToCart }) => {
         -
       </button>
       <div className="px-6 py-2 text-base font-black bg-gray-200 rounded ">
-        {dataItem.stock > 0 ? quanty : "Stock agotado"}
+        {quanty}
       </div>
 
       <button
@@ -30,7 +38,11 @@ const ItemQuantySelector = ({ dataItem, addToCart }) => {
       >
         +
       </button>
-      <AddItemButton dataItem={dataItem} quanty={quanty} addToCart={addToCart} />
+      <AddItemButton
+        dataItem={dataItem}
+        quanty={quanty}
+        addToCart={addToCart}
+      />
     </div>
   );
 };

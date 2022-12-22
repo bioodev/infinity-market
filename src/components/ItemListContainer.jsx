@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
-import { getDocs, collection, query, where } from "firebase/firestore";
+import { getDocs, collection, query, where, orderBy } from "firebase/firestore";
 import { db } from "../services/firebaseConfig";
 
 const ItemListContainer = () => {
@@ -16,7 +16,10 @@ const ItemListContainer = () => {
           collection(db, "Productos-infinity-ecommerce"),
           where("category", "==", categoryId)
         )
-      : collection(db, "Productos-infinity-ecommerce");
+      : query(
+        collection(db, "Productos-infinity-ecommerce"),
+        orderBy("price", "asc")
+      );
 
     getDocs(collectionRef)
       .then((response) => {
