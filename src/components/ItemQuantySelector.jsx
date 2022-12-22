@@ -16,17 +16,17 @@ const ItemQuantySelector = ({ dataItem, addToCart }) => {
     <div className="flex flex-wrap items-center justify-center gap-2">
       <button
         onClick={decrement}
-        className="px-6 py-2 font-black text-base bg-gray-200 rounded active:bg-gray-300 active:shadow-inner hover:shadow-md "
+        className="px-6 py-2 text-base font-black bg-gray-200 rounded active:bg-gray-300 active:shadow-inner hover:shadow-md "
       >
         -
       </button>
-      <div className="px-6 py-2 font-black text-base bg-gray-200 rounded ">
+      <div className="px-6 py-2 text-base font-black bg-gray-200 rounded ">
         {dataItem.stock > 0 ? quanty : "Stock agotado"}
       </div>
 
       <button
         onClick={increment}
-        className="px-6 py-2 font-black text-base bg-gray-200 rounded active:bg-gray-300 active:shadow-inner hover:shadow-md"
+        className="px-6 py-2 text-base font-black bg-gray-200 rounded active:bg-gray-300 active:shadow-inner hover:shadow-md"
       >
         +
       </button>

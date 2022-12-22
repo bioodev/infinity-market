@@ -13,27 +13,22 @@ export const CartProvider = ({ children }) => {
 
     }
   };
-
   const isInCart = (id) => {
     return cart.some((product) => product.id === id);
   };
-
   const removeProduct = (id) => {
     const updateCart = cart.filter((product) => product.id !== id);
     setCart(updateCart);
     toast(`⛔ Se quitó el producto del carrito`);
   };
-
   const getTotalCart = () => {
     let totalCart = 0;
-
     cart.forEach((product) => {
       let subTotal = product.price * product.quantity;
       totalCart += subTotal;
     });
     return totalCart;
   };
-
   const getCartCounter = () => {
     let totalQuantity = 0;
 
@@ -42,6 +37,9 @@ export const CartProvider = ({ children }) => {
     });
     return totalQuantity;
   };
+  const clearCart = () => {
+    setCart([])
+  }
 
   return (
     <CartContext.Provider
@@ -52,6 +50,7 @@ export const CartProvider = ({ children }) => {
         removeProduct,
         getCartCounter,
         getTotalCart,
+        clearCart
       }}
     >
       {children}

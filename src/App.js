@@ -19,7 +19,6 @@ function App() {
           <div className="grid grid-cols-1 grid-auto lg:grid-cols-12">
             <div className="bg-white lg:col-span-12 ">
               <Navbar />
-              <Toaster />
             </div>
             <div className="bg-gray-100 lg:col-span-10 lg:shadow-red-600 lg:z-10">
               <Routes>
@@ -53,6 +52,7 @@ function App() {
           </div>
         </BrowserRouter>
       </CartProvider>
+      <Toaster />
     </div>
   );
 }

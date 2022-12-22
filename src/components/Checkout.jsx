@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const Checkout = () => {
-  const { cart, getTotalCart } = useContext(CartContext);
+  const { cart, getTotalCart, clearCart } = useContext(CartContext);
   const [userData, setUserData] = useState({
       name: "",
       email: "",
@@ -28,6 +28,7 @@ const Checkout = () => {
     items: cart,
     total: getTotalCart(),
     });
+    clearCart();
     toast(`✅ La orden de compra se envio correctamente`);
     setTimeout(() => {
       navigate("/");

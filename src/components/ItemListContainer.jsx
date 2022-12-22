@@ -1,7 +1,8 @@
-import { getProducts, getProductsByCategory } from "../asyncMock";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
+import { getDocs, collection, query, where } from "firebase/firestore";
+import { db } from "../services/firebaseConfig";
 
 const ItemListContainer = () => {
   const [items, setItems] = useState([]);
@@ -9,37 +10,43 @@ const ItemListContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (!categoryId) {
-      getProducts()
-        .then((res) => {
-          setItems(res)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-        .finally(() => {
-          setIsLoading(false)
+    setIsLoading(true);
+    const collectionRef = categoryId
+      ? query(
+          collection(db, "Productos-infinity-ecommerce"),
+          where("category", "==", categoryId)
+        )
+      : collection(db, "Productos-infinity-ecommerce");
+
+    getDocs(collectionRef)
+      .then((response) => {
+        const productsAdapted = response.docs.map((doc) => {
+          const data = doc.data();
+          return { id: doc.id, ...data };
         });
-    } else {
-      getProductsByCategory(categoryId)
-        .then((res) => {
-          setItems(res)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-        .finally(() => {
-          setIsLoading(false)
-        });
-    }
+        setItems(productsAdapted);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, [categoryId]);
 
   if (isLoading) {
-    return <div className="flex flex-col items-center justify-center w-full p-8">Cargando datos...</div>;
+    return (
+      <div className="flex flex-col items-center justify-center w-full p-8">
+        Cargando datos...
+      </div>
+    );
   }
   return (
-    <div className="flex flex-col items-center justify-center w-full text-4xl ItemListContainer min-h-fit ">
-      <h1 className="p-4 pb-0 text-lg font-black text-gray-600 uppercase ">{ (!categoryId) ? `Todos los productos` : "" }{ (categoryId) ? `${categoryId}` : "" } </h1>
+    <div className="flex flex-col items-center justify-center w-full text-4xl ItemListContainer">
+      <h1 className="p-4 pb-0 text-lg font-black text-gray-600 uppercase ">
+        {!categoryId ? `Todos los productos` : ""}
+        {categoryId ? `${categoryId}` : ""}{" "}
+      </h1>
       <ItemList dataItems={items} />
     </div>
   );

@@ -1,12 +1,10 @@
 import { FaInfinity } from "react-icons/fa";
 import CartWidget from "./CartWidget";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useContext } from 'react'
 import { CartContext } from '../contexts/CartContext'
 
 const Navbar = () => {
-
-  const navigate = useNavigate();
 
   const { getCartCounter } = useContext(CartContext)
   const totalQuantity = getCartCounter();
