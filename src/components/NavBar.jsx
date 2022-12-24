@@ -3,10 +3,14 @@ import CartWidget from "./CartWidget";
 import { NavLink } from "react-router-dom";
 import { useContext } from 'react'
 import { CartContext } from '../contexts/CartContext'
+import OrdersWidget from './OrdersWidget'
+import {OrdersContext} from '../contexts/OrdersContext'
 
 const Navbar = () => {
 
   const { getCartCounter } = useContext(CartContext)
+  const { getTotalOrders } = useContext(OrdersContext)
+
   const totalQuantity = getCartCounter();
   
   return (
@@ -46,6 +50,7 @@ const Navbar = () => {
 
           <CartWidget cartCounter={totalQuantity} />
 
+          { getTotalOrders() > 0 ? <OrdersWidget /> : ""}
         </nav>
       </div>
     </div>

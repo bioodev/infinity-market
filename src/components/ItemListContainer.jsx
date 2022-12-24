@@ -48,7 +48,7 @@ const ItemListContainer = () => {
     <div className="flex flex-col items-center justify-center w-full text-4xl ItemListContainer">
       <h1 className="p-4 pb-0 text-lg font-black text-gray-600 uppercase ">
         {!categoryId ? `Todos los productos` : ""}
-        {categoryId ? `${categoryId}` : ""}{" "}
+        {categoryId ? `${categoryId}` : ""}
       </h1>
       <ItemList dataItems={items} />
     </div>

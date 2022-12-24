@@ -5,13 +5,13 @@ const Item = ({ dataItem }) => {
   return (
     <div
       style={{
-        backgroundImage: `linear-gradient(rgba(255,255,255,.4), rgba(255,255,255,.8)), url(${dataItem.image})`,
+        backgroundImage: `linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,.2)), url(${dataItem.image})`,
       }}
-      className="bg-top bg-cover rounded-md shadow-sm ease-in-out duration-300 hover:ease-in-out hover:shadow-2xl border-solid hover:border-black flex flex-col items-center justify-center "
+      className="flex flex-col items-center justify-center bg-top bg-cover border-solid rounded shadow-lg hover:shadow-md active:shadow-inner active:bg-teal-200"
     >
-      <Link to={`/products/${dataItem.id}`} className="ease-in-out backdrop-blur-sm hover:backdrop-blur-none bg-gradient-to-br from-white to-transparent h-full w-full flex flex-col items-center justify-center gap-4 px-4 py-12 rounded-md">
-        <h2 className="text-xl font-black text-center">{dataItem.name}</h2>
-        <h3 className="text-sm font-black  rounded p-1 border-solid border-gray-200">USD $ {dataItem.price}</h3>
+      <Link to={`/products/${dataItem.id}`} className="flex flex-col items-center justify-center w-full h-full gap-4 px-4 py-12 rounded active:bg-teal-200 backdrop-blur hover:backdrop-blur-none bg-gradient-to-br from-white to-transparent">
+        <h2 className="w-48 text-xl font-black text-center">{dataItem.name}</h2>
+        <h3 className="p-1 text-sm font-black border-gray-200 border-solid rounded">USD $ {dataItem.price}</h3>
       </Link>
 
     </div>
