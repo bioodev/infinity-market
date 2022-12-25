@@ -12,7 +12,7 @@ const OrdersWidget = () => {
     <>
       <NavLink
         to="/orders"
-        className="flex items-center justify-center h-full gap-1 p-2 text-sm border border-solid rounded rounded-md shadow-md hover:shadow-lg hover:border-black "
+        className="flex items-center justify-center h-full gap-1 p-2 text-sm border border-solid rounded shadow-md hover:shadow-lg hover:border-black "
       >
         <FaListAlt />
         {totalOrders}
