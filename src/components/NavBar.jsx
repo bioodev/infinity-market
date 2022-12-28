@@ -5,7 +5,6 @@ import { useContext } from 'react'
 import { CartContext } from '../contexts/CartContext'
 import OrdersWidget from './OrdersWidget'
 import {OrdersContext} from '../contexts/OrdersContext'
-import Userwidget from "./UserWidget";
 
 const Navbar = () => {
 
@@ -53,7 +52,6 @@ const Navbar = () => {
 
           { getTotalOrders() > 0 ? <OrdersWidget /> : ""}
 
-          <Userwidget />
         </nav>
       </div>
     </div>

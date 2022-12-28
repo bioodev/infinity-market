@@ -7,12 +7,12 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCn76pnG5Q-Jg_K-mYstQ0uR3y6l4w9mjo",
-  authDomain: "infinity-ecommerce.firebaseapp.com",
-  projectId: "infinity-ecommerce",
-  storageBucket: "infinity-ecommerce.appspot.com",
-  messagingSenderId: "451732319134",
-  appId: "1:451732319134:web:ed689df6e0a9b0392c048f",
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId,
 };
 
 // Initialize Firebase

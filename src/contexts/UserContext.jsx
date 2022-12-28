@@ -1,16 +1,40 @@
 import { createContext, useState } from "react";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { toast } from "react-hot-toast"
+import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { toast } from "react-hot-toast";
 
 export const UserContext = createContext([]);
 
 export const UserProvider = ({ children }) => {
-  const [userInfo, setUserInfo] = useState([]);
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    lastname: "",
+    email: "",
+    uid: "",
+    phone: "",
+    avatar: "",
+    wallet: "",
+    address: "",
+    token: "",
+  });
 
   const [userIsLoading, setUserIsLoading] = useState(true);
 
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
+
+
+  const handleUserLoginEmail = (e) => {
+    e.preventDefault();
+    createUserWithEmailAndPassword(auth, userInfo.email, userInfo.password)
+    .then((result) => {
+      console.log(result)
+      setUserInfo({ ...userInfo, uid: result.user.uid, email: result.user.email, token: result.user.accessToken } )
+    })
+    .catch((error) => {
+      console.log(error)
+    });
+
+  }
 
   const handleUserLogin = () => {
     setUserIsLoading(true);
@@ -40,9 +64,14 @@ export const UserProvider = ({ children }) => {
         console.log(credential);
       })
       .finally(() => {
-
         setUserIsLoading(false);
       });
+  };
+  const handleChangeUserLoginEmail = (event) => {
+    setUserInfo((user) => ({
+      ...user,
+      [event.target.name]: event.target.value,
+    }));
   };
 
   return (
@@ -53,6 +82,8 @@ export const UserProvider = ({ children }) => {
         userIsLoading,
         setUserIsLoading,
         handleUserLogin,
+        handleUserLoginEmail,
+        handleChangeUserLoginEmail
       }}
     >
       {children}
