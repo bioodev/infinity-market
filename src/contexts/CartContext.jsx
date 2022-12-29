@@ -1,15 +1,16 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
 import toast from 'react-hot-toast';
+import useLocalStorageState from "use-local-storage-state";
+
 
 export const CartContext = createContext([]);
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useLocalStorageState("cart", { defaultValue: []});
   const addToCart = (productToAdd) => {
     if (!isInCart(productToAdd.id)) {
       setCart([...cart, productToAdd]);
       toast(`✅ Se agregó ${productToAdd.quantity} de "${productToAdd.name}"`);
-
     }
   };
   const isInCart = (id) => {

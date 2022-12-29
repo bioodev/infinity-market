@@ -12,15 +12,16 @@ import Checkout from "./components/Checkout";
 import { OrdersProvider } from "./contexts/OrdersContext";
 import Orders from "./components/Orders";
 import User from "./components/User";
-import { UserProvider } from "./contexts/UserContext"; 
+import { UserProvider } from "./contexts/UserContext";
+import OrderDetailContainer from "./components/OrderDetailContainer";
 
 function App() {
   return (
     <div className="App">
-      <UserProvider>
-        <CartProvider>
-          <OrdersProvider>
-            <BrowserRouter>
+      <BrowserRouter>
+        <UserProvider>
+          <CartProvider>
+            <OrdersProvider>
               <div className="grid grid-cols-1 grid-auto lg:grid-cols-12">
                 <div className="bg-white lg:col-span-12 ">
                   <Navbar />
@@ -36,6 +37,10 @@ function App() {
                       path="/products/:productId"
                       element={<ItemDetailContainer />}
                     />
+                    <Route
+                      path="/orders/:orderId"
+                      element={<OrderDetailContainer />}
+                    />
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/checkout" element={<Checkout />} />
                     <Route path="/orders" element={<Orders />} />
@@ -49,11 +54,11 @@ function App() {
                   <Footer />
                 </div>
               </div>
-            </BrowserRouter>
-            <Toaster />
-          </OrdersProvider>
-        </CartProvider>
-      </UserProvider>
+              <Toaster />
+            </OrdersProvider>
+          </CartProvider>
+        </UserProvider>
+      </BrowserRouter>
     </div>
   );
 }

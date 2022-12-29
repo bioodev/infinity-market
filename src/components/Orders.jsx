@@ -1,22 +1,22 @@
-import { toast } from "react-hot-toast";
 import { OrdersContext } from "../contexts/OrdersContext";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Orders = () => {
-  const { orderList, getTotalOrders } = useContext(OrdersContext);
+  const { orderList, getTotalOrders, clearOrderList } = useContext(OrdersContext);
   const totalOrders = getTotalOrders();
 
+  const navigate = useNavigate();
+
   const handleOrderId = (id) => {
-    navigator.clipboard
-      .writeText(id)
-      .then(toast(`✅ Copiado al portapapeles: ${id}`));
+    navigate(`/orders/${id}`)
   };
 
   if (totalOrders === 0) {
     return (
       <div className="flex flex-col items-center justify-center w-full gap-4 p-4 min-h-fit">
         <h1 className="p-4 pb-0 text-lg font-black text-gray-600 uppercase">
-          No hay ordenes de compra todavia
+          No hay ordenes de compra
         </h1>
       </div>
     );
@@ -38,6 +38,9 @@ const Orders = () => {
           {createdOrdersId}
         </button>
       ))}
+      {
+        <button onClick={clearOrderList}>Limpiar listado de ordenes</button>
+      }
     </div>
   );
 };
