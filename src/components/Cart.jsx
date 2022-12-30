@@ -7,14 +7,12 @@ const Cart = () => {
   const { cart, removeProduct, getTotalCart } = useContext(CartContext);
   const handleRemove = (id) => removeProduct(id);
   const navigate = useNavigate();
-
   return (
     <div className="flex flex-col items-center justify-center w-full gap-4 p-4 m-auto mb-4">
       <h1 className="w-full col-span-1 p-4 pb-0 text-lg font-black text-center text-gray-600 uppercase ">
         Carrito de compra
       </h1>
-
-      {getTotalCart() > 1 ? (
+      {getTotalCart() > 1 && (
         <div className="flex flex-col w-full gap-4 lg:w-96 md:w-96">
           {cart.map((item) => (
             <div
@@ -45,10 +43,7 @@ const Cart = () => {
             </div>
           ))}
         </div>
-      ) : (
-        ""
       )}
-
       {getTotalCart() < 1 ? (
         <div className="grid items-center justify-center w-full grid-cols-1 gap-4 text-center lg:w-96 md:w-96">
           <div className="px-4 py-2">Carro vacío</div>

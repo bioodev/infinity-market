@@ -3,7 +3,6 @@ import { CartContext } from "../contexts/CartContext";
 
 const AddItemButton = ({ dataItem, quanty }) => {
   const { addToCart } = useContext(CartContext);
-
   const productToAdd = {
     id: dataItem.id,
     name: dataItem.name,
@@ -11,7 +10,6 @@ const AddItemButton = ({ dataItem, quanty }) => {
     quantity: quanty,
     image: dataItem.image
   };
-
   const handleClickAdd = () => {
     addToCart(productToAdd);
   };
