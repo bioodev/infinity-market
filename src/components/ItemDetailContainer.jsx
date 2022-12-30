@@ -11,7 +11,6 @@ const ItemDetailContainer = () => {
 
   useEffect(() => {
     const docRef = doc(db, "Productos-infinity-ecommerce", productId);
-
     getDoc(docRef)
       .then((doc) => {
         const productData = doc.data();
@@ -19,13 +18,12 @@ const ItemDetailContainer = () => {
         setItem(productAdapted);
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
       })
       .finally(() => {
         setIsLoading(false);
       });
   }, [productId]);
-
   if (isLoading) {
     return (
       <div className="flex flex-col items-center justify-center w-full p-8">

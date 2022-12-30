@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const OrderDetail = ({ itemOrder }) => {
-
   const { id, total, buyer, items } = itemOrder;
   const { name, lastname, email, phone, address } = buyer;
   const navigate = useNavigate();
@@ -19,7 +18,6 @@ const OrderDetail = ({ itemOrder }) => {
         <h2>💳 Total a pagar: ${total}</h2>
         <h2>🔴 Estado de la orden: Pendiente</h2>
       </div>
-
       <div className="w-full">
         <h2> ℹ️ Informacion de usuario</h2>
         <div>
@@ -48,8 +46,8 @@ const OrderDetail = ({ itemOrder }) => {
       </div>
       <div className="w-full">
         <button
-            className="w-full px-4 py-2 text-white bg-black rounded shadow-sm disabled hover:bg-emerald-600 hover:shadow-md "
-            onClick={handleBackToOrderList}
+          className="w-full px-4 py-2 text-white bg-black rounded shadow-sm disabled hover:bg-emerald-600 hover:shadow-md "
+          onClick={handleBackToOrderList}
         >
           Volver
         </button>

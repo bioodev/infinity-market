@@ -8,8 +8,8 @@ const Sidebar = () => {
         <div className="text-sm">
           <FaInfinity className="inline-block mx-1" />
           <b>
-            <a href="https://infinity-market.vercel.app/">Infinity Market</a>
-          </b>{" "}
+            <a href="https://infinity-market.vercel.app/">Infinity Market </a>
+          </b>
           es una tienda minimalista que se puede adaptar a distintos tipos de
           productos.
         </div>
@@ -25,4 +25,5 @@ const Sidebar = () => {
     </div>
   );
 };
+
 export default Sidebar;

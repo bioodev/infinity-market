@@ -11,7 +11,6 @@ import { toast } from "react-hot-toast";
 import useLocalStorageState from "use-local-storage-state";
 
 export const UserContext = createContext([]);
-
 export const UserProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useLocalStorageState("userInfo", {
     defaultValue: {
@@ -28,13 +27,10 @@ export const UserProvider = ({ children }) => {
       orders: "",
     },
   });
-
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
-
   const handleCreateUserLoginEmail = (e) => {
     e.preventDefault();
-
     if (validateCreateUserForm()) {
       createUserWithEmailAndPassword(auth, userInfo.email, userInfo.password)
         .then((result) => {
@@ -50,10 +46,8 @@ export const UserProvider = ({ children }) => {
         });
     } else {
       toast(`Hay errores en el formulario`);
-
     }
   };
-
   const handleSignOutUser = () => {
     signOut(auth)
       .then(() => {
@@ -64,7 +58,6 @@ export const UserProvider = ({ children }) => {
         toast(`❌ Se ha producido un error`);
       });
   };
-
   const handleUserGoogleLogin = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
@@ -95,15 +88,16 @@ export const UserProvider = ({ children }) => {
       [event.target.name]: event.target.value,
     }));
   };
-
   const validateCreateUserForm = () => {
-    if (userInfo.email === userInfo.emailconfirmation && userInfo.password.length > 5) {
+    if (
+      userInfo.email === userInfo.emailconfirmation &&
+      userInfo.password.length > 5
+    ) {
       return true;
     } else {
       return false;
     }
   };
-
   return (
     <UserContext.Provider
       value={{

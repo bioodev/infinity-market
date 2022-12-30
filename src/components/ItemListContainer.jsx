@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import ItemList from "./ItemList";
 import { getDocs, collection, query, where, orderBy } from "firebase/firestore";
 import { db } from "../services/firebaseConfig";
+import ItemList from "./ItemList";
 
 const ItemListContainer = () => {
   const [items, setItems] = useState([]);
-  const { categoryId } = useParams();
   const [isLoading, setIsLoading] = useState(true);
+  const { categoryId } = useParams();
 
   useEffect(() => {
     setIsLoading(true);
@@ -17,9 +17,9 @@ const ItemListContainer = () => {
           where("category", "==", categoryId)
         )
       : query(
-        collection(db, "Productos-infinity-ecommerce"),
-        orderBy("price", "asc")
-      );
+          collection(db, "Productos-infinity-ecommerce"),
+          orderBy("price", "asc")
+        );
 
     getDocs(collectionRef)
       .then((response) => {

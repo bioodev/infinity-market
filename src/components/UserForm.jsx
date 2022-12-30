@@ -5,7 +5,6 @@ import { UserContext } from "../contexts/UserContext";
 const UserForm = () => {
   const { handleCreateOrder, handleChange } = useContext(OrdersContext);
   const { userInfo } = useContext(UserContext);
-
   return (
     <>
       <h2 className="p-4 pb-0 text-lg font-black text-center text-gray-600 uppercase">
@@ -29,7 +28,6 @@ const UserForm = () => {
             required
           />
         </label>
-
         <label className="flex flex-wrap items-center justify-start w-full">
           <span className="w-full px-4 py-2 bg-white">Apellido:</span>
           <input
@@ -44,7 +42,6 @@ const UserForm = () => {
             required
           />
         </label>
-
         <label className="flex flex-wrap items-center justify-start w-full">
           <span className="w-full px-4 py-2 bg-white">Email:</span>
           <input
@@ -59,7 +56,6 @@ const UserForm = () => {
             required
           />
         </label>
-
         <label className="flex flex-wrap items-center justify-start w-full">
           <span className="w-full px-4 py-2 bg-white">Teléfono:</span>
           <input
@@ -74,7 +70,6 @@ const UserForm = () => {
             required
           />
         </label>
-
         <label className="flex flex-wrap items-center justify-start w-full">
           <span className="w-full px-4 py-2 bg-white ">Dirección:</span>
           <input
@@ -89,7 +84,6 @@ const UserForm = () => {
             required
           />
         </label>
-
         <label className="flex flex-wrap items-center justify-start w-full">
           <span className="w-full px-4 py-2 bg-white">Dirección LN:</span>
           <input

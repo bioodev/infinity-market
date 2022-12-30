@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer components {
     .categorias a {
       @apply p-2 border border-solid rounded hover:border-black hover:shadow-md;
@@ -13,7 +12,6 @@
     body{
       @apply bg-gray-200; 
     }
-
   }
 
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;900&display=swap');

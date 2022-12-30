@@ -37,5 +37,5 @@ Icons [Openmoji](https://openmoji.org/)
 
 
 # ⚪️ Developer
-[Bioodev - Enrique Fernandez](https://bioodev-blog.vercel.app/) 
+[🌐 Bioodev - Enrique Fernandez](https://bioodev-blog.vercel.app/) 
 

@@ -49,7 +49,7 @@ const Cart = () => {
           <div className="px-4 py-2">Carro vacío</div>
           <button
             className="px-4 py-2 m-auto text-white bg-black rounded shadow-sm hover:bg-emerald-600 hover:shadow-md"
-            onClick={() => navigate("/")} 
+            onClick={() => navigate("/")}
           >
             Agregar productos
           </button>

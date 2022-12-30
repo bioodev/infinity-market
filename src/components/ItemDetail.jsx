@@ -15,7 +15,9 @@ const ItemDetail = ({ dataItem }) => {
         />
       </div>
       <div className="flex flex-col items-center gap-2">
-        <h1 className="p-4 text-3xl font-bold text-center w-96">{dataItem.name}</h1>
+        <h1 className="p-4 text-3xl font-bold text-center w-96">
+          {dataItem.name}
+        </h1>
         <h1 className="font-bold uppercase text-md">{dataItem.category}</h1>
         <h1 className="font-bold uppercase text-md">USD ${dataItem.price}</h1>
         {isInCart(dataItem.id) ? (

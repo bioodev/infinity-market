@@ -1,13 +1,11 @@
-import {useContext} from 'react'
+import { useContext } from "react";
 import { FaListAlt } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-import {OrdersContext} from '../contexts/OrdersContext'
+import { OrdersContext } from "../contexts/OrdersContext";
 
 const OrdersWidget = () => {
-
-    const { getTotalOrders } = useContext(OrdersContext)
-    const totalOrders = getTotalOrders();
-
+  const { getTotalOrders } = useContext(OrdersContext);
+  const totalOrders = getTotalOrders();
   return (
     <>
       <NavLink
@@ -18,7 +16,7 @@ const OrdersWidget = () => {
         {totalOrders}
       </NavLink>
     </>
-  )
-}
+  );
+};
 
-export default OrdersWidget
+export default OrdersWidget;

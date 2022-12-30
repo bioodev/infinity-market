@@ -11,7 +11,6 @@ const ItemQuantySelector = ({ dataItem, addToCart }) => {
   const decrement = () => {
     quanty > 1 ? setQuanty((prev) => prev - 1) : console.log("err");
   };
-
   if (dataItem.stock < 1) {
     return (
       <div className="px-6 py-2 text-base font-black bg-gray-200 rounded ">
@@ -19,7 +18,6 @@ const ItemQuantySelector = ({ dataItem, addToCart }) => {
       </div>
     );
   }
-
   return (
     <div className="flex flex-wrap items-center justify-center gap-2">
       <button

@@ -1,12 +1,10 @@
 import { createContext } from "react";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 import useLocalStorageState from "use-local-storage-state";
 
-
 export const CartContext = createContext([]);
-
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useLocalStorageState("cart", { defaultValue: []});
+  const [cart, setCart] = useLocalStorageState("cart", { defaultValue: [] });
   const addToCart = (productToAdd) => {
     if (!isInCart(productToAdd.id)) {
       setCart([...cart, productToAdd]);
@@ -31,16 +29,14 @@ export const CartProvider = ({ children }) => {
   };
   const getCartCounter = () => {
     let totalQuantity = 0;
-
     cart.forEach((product) => {
       totalQuantity += product.quantity;
     });
     return totalQuantity;
   };
   const clearCart = () => {
-    setCart([])
-  }
-
+    setCart([]);
+  };
   return (
     <CartContext.Provider
       value={{
@@ -50,7 +46,7 @@ export const CartProvider = ({ children }) => {
         removeProduct,
         getCartCounter,
         getTotalCart,
-        clearCart
+        clearCart,
       }}
     >
       {children}

@@ -8,7 +8,7 @@ const AddItemButton = ({ dataItem, quanty }) => {
     name: dataItem.name,
     price: dataItem.price,
     quantity: quanty,
-    image: dataItem.image
+    image: dataItem.image,
   };
   const handleClickAdd = () => {
     addToCart(productToAdd);
