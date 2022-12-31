@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const OrderDetail = ({ itemOrder }) => {
-  const { id, total, buyer, items } = itemOrder;
+  const { id, total, buyer, items, state, date } = itemOrder;
   const { name, lastname, email, phone, address } = buyer;
   const navigate = useNavigate();
   const handleBackToOrderList = () => {
@@ -13,36 +13,40 @@ const OrderDetail = ({ itemOrder }) => {
       <h1 className="w-full p-4 pb-0 text-lg font-black text-center text-gray-600 uppercase">
         Detalle de Orden
       </h1>
-      <div className="w-full">
-        <h2>🧾 Codigo: {id}</h2>
-        <h2>💳 Total a pagar: ${total}</h2>
-        <h2>🔴 Estado de la orden: Pendiente</h2>
+      <div className="flex flex-col items-center justify-center gap-2 p-4 bg-white rounded shadow">
+      <div className="w-full ">
+        <h2 className="font-black uppercase"> ℹ️ Orden</h2>
+        <h3>🧾 Codigo: {id}</h3>
+        <h3>💲 Total: ${total}</h3>
+        <h3>🔴 Estado: {state}</h3>
+        <h3>🗓️ Fecha: {date}</h3>
+
       </div>
       <div className="w-full">
-        <h2> ℹ️ Informacion de usuario</h2>
+        <h2 className="font-black uppercase"> ℹ️ Usuario</h2>
         <div>
-          <p>
-            👤 Nombre completo: {name} {lastname}
-          </p>
-          <p>📧 Email: {email}</p>
-          <p>📲 Fono: {phone}</p>
-          <p>📍 Direccion: {address}</p>
+          <h3>
+            👤 Nombre: {name} {lastname}
+          </h3>
+          <h3>📧 Email: {email}</h3>
+          <h3>📲 Fono: {phone}</h3>
+          <h3>📍 Dirección: {address}</h3>
         </div>
       </div>
       <div className="w-full">
-        <h2>🛒 Detalle de productos:</h2>
-        <div>
+        <h2 className="font-black uppercase">🛒 Productos:</h2>
+        <ul>
           {items.map((prod, i) => {
             const { name, price, quantity, id } = prod;
             return (
-              <div key={id} className="gap-2 py-2">
-                <p>🏷️ Producto: {name}</p>
-                <p>💲 Precio: ${price}</p>
-                <p>🛍️ Cantidad: {quantity}</p>
-              </div>
+              <li key={id} className="gap-2 py-2">
+                <h3>🏷️{name}/🛍️{quantity}/💲{price * quantity}</h3>
+              </li>
             );
           })}
-        </div>
+        </ul>
+      </div>
+
       </div>
       <div className="w-full">
         <button

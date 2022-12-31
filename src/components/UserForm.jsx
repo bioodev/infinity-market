@@ -5,16 +5,16 @@ import { UserContext } from "../contexts/UserContext";
 const UserForm = () => {
   const { handleCreateOrder, handleChange } = useContext(OrdersContext);
   const { userInfo } = useContext(UserContext);
+
+  const { name, lastname, email, phone, address, wallet } = userInfo;
+
   return (
     <>
-      <h2 className="p-4 pb-0 text-lg font-black text-center text-gray-600 uppercase">
-        Información de usuario
-      </h2>
       <form
-        className="grid grid-cols-1 gap-4 p-4 lg:grid-cols-3"
+        className="grid grid-cols-1 gap-4 p-4 md:grid-cols-2"
         onSubmit={handleCreateOrder}
       >
-        <label className="flex flex-wrap items-center justify-start w-full">
+        <label className="flex flex-wrap items-center justify-start w-full shadow">
           <span className="w-full px-4 py-2 bg-white">Nombre:</span>
           <input
             className="w-full px-4 py-2 rounded form-control"
@@ -24,11 +24,11 @@ const UserForm = () => {
             placeholder="ej: Juan"
             onChange={handleChange}
             autoComplete="off"
-            defaultValue={userInfo.name}
+            defaultValue={name}
             required
           />
         </label>
-        <label className="flex flex-wrap items-center justify-start w-full">
+        <label className="flex flex-wrap items-center justify-start w-full shadow">
           <span className="w-full px-4 py-2 bg-white">Apellido:</span>
           <input
             className="w-full px-4 py-2 rounded form-control"
@@ -38,11 +38,11 @@ const UserForm = () => {
             placeholder="ej: Pérez"
             onChange={handleChange}
             autoComplete="off"
-            defaultValue={userInfo.lastname}
+            defaultValue={lastname}
             required
           />
         </label>
-        <label className="flex flex-wrap items-center justify-start w-full">
+        <label className="flex flex-wrap items-center justify-start w-full shadow">
           <span className="w-full px-4 py-2 bg-white">Email:</span>
           <input
             className="w-full px-4 py-2 rounded form-control"
@@ -52,11 +52,11 @@ const UserForm = () => {
             id="email"
             onChange={handleChange}
             autoComplete="off"
-            defaultValue={userInfo.email}
+            defaultValue={email}
             required
           />
         </label>
-        <label className="flex flex-wrap items-center justify-start w-full">
+        <label className="flex flex-wrap items-center justify-start w-full shadow">
           <span className="w-full px-4 py-2 bg-white">Teléfono:</span>
           <input
             className="w-full px-4 py-2 rounded form-control"
@@ -66,11 +66,11 @@ const UserForm = () => {
             placeholder="ej: 56912345678"
             onChange={handleChange}
             autoComplete="off"
-            defaultValue={userInfo.phone}
+            defaultValue={phone}
             required
           />
         </label>
-        <label className="flex flex-wrap items-center justify-start w-full">
+        <label className="flex flex-wrap items-center justify-start w-full shadow">
           <span className="w-full px-4 py-2 bg-white ">Dirección:</span>
           <input
             className="w-full px-4 py-2 rounded form-control"
@@ -80,11 +80,11 @@ const UserForm = () => {
             placeholder="ej: Santa María 1234, Providencia, Santiago, Chile"
             onChange={handleChange}
             autoComplete="off"
-            defaultValue={userInfo.address}
+            defaultValue={address}
             required
           />
         </label>
-        <label className="flex flex-wrap items-center justify-start w-full">
+        <label className="flex flex-wrap items-center justify-start w-full shadow">
           <span className="w-full px-4 py-2 bg-white">Dirección LN:</span>
           <input
             className="w-full px-4 py-2 rounded form-control"
@@ -94,15 +94,15 @@ const UserForm = () => {
             placeholder="Dirección Lightning Network"
             onChange={handleChange}
             autoComplete="off"
-            defaultValue={userInfo.wallet}
+            defaultValue={wallet}
           />
         </label>
-        <div className="flex justify-center lg:col-span-3">
+        <div className="flex justify-center m-auto md:col-span-2 lg:col-span-2">
           <button
             type="submit"
-            className="px-4 py-2 text-white bg-black rounded shadow-sm w-96 disabled hover:bg-emerald-600 hover:shadow-md "
+            className="px-4 py-2 m-auto text-white bg-black rounded shadow-sm disabled hover:bg-emerald-600 hover:shadow-md "
           >
-            Confirmar información
+            ✔️ Confirmar información
           </button>
         </div>
       </form>

@@ -18,7 +18,7 @@ const AddItemButton = ({ dataItem, quanty }) => {
       onClick={handleClickAdd}
       className="px-6 py-2 text-base font-black bg-gray-200 rounded active:bg-gray-300 active:shadow-inner hover:shadow-md"
     >
-      Agregar al carro
+      ➕ Agregar
     </button>
   );
 };

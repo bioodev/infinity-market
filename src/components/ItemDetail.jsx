@@ -25,7 +25,7 @@ const ItemDetail = ({ dataItem }) => {
             className="px-6 py-2 text-base font-black bg-gray-200 rounded active:bg-gray-300 active:shadow-inner hover:shadow-md"
             to="/cart"
           >
-            Ver carrito
+            🛒 Ver carrito
           </Link>
         ) : (
           <ItemQuantySelector dataItem={dataItem} />

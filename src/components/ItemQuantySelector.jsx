@@ -24,7 +24,7 @@ const ItemQuantySelector = ({ dataItem, addToCart }) => {
         onClick={decrement}
         className="px-6 py-2 text-base font-black bg-gray-200 rounded active:bg-gray-300 active:shadow-inner hover:shadow-md "
       >
-        -
+        🔻
       </button>
       <div className="px-6 py-2 text-base font-black bg-gray-200 rounded ">
         {quanty}
@@ -34,7 +34,7 @@ const ItemQuantySelector = ({ dataItem, addToCart }) => {
         onClick={increment}
         className="px-6 py-2 text-base font-black bg-gray-200 rounded active:bg-gray-300 active:shadow-inner hover:shadow-md"
       >
-        +
+        🔺
       </button>
       <AddItemButton
         dataItem={dataItem}

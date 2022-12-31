@@ -1,6 +1,9 @@
 import { createContext, useState, useContext } from "react";
-import useLocalStorageState from "use-local-storage-state";
+import { useNavigate } from "react-router-dom";
+import { CartContext } from "../contexts/CartContext";
+import { UserContext } from "../contexts/UserContext";
 import { toast } from "react-hot-toast";
+import { db } from "../services/firebaseConfig";
 import {
   addDoc,
   collection,
@@ -9,28 +12,51 @@ import {
   where,
   documentId,
   writeBatch,
+  Timestamp,
 } from "firebase/firestore";
-import { CartContext } from "../contexts/CartContext";
-import { db } from "../services/firebaseConfig";
-import { useNavigate } from "react-router-dom";
-import { UserContext } from "../contexts/UserContext";
 
 export const OrdersContext = createContext([]);
 export const OrdersProvider = ({ children }) => {
-  const { userInfo, setUserInfo } = useContext(UserContext);
+  const { userInfo, setUserInfo, handleClearUserLocalData } =
+    useContext(UserContext);
   const { cart, getTotalCart, clearCart } = useContext(CartContext);
-  const [orderList, setOrderList] = useLocalStorageState("orderList", {
-    defaultValue: [],
-  });
   const [orderIsLoading, setOrderIsLoading] = useState(false);
   const navigate = useNavigate();
+  const [orderState, setOrderState] = useState("Pendiente");
+  const [ordersFromDb, setOrdersFromDb] = useState([]);
+
+  const getOrdersFromDb = () => {
+    const ordersRef = collection(db, "Ordenes-infinity-ecommerce");
+    const q = query(ordersRef, where("buyerUid", "==", userInfo.uid));
+    getDocs(q).then((response) => {
+      const ordersIds = response.docs.map((order) => {
+        const orderid = order.id;
+        return(orderid)
+      });
+      setOrdersFromDb( ordersIds, ...ordersFromDb )
+    }).finally(() => {
+      console.log("fin");
+    });
+  };
+
+  const handleChangeOrderState = (newstate) => {
+    setOrderState(newstate);
+  };
+  // const handleOrdersListToUser = () => {
+  //   setUserInfo({ ...userInfo, orders: orderList });
+  // };
+
   const handleCreateOrder = async () => {
     setOrderIsLoading(true);
-    try{
+    try {
       const order = {
         buyer: userInfo,
         items: cart,
         total: getTotalCart(),
+        date: getDate(),
+        state: orderState,
+        buyerUid: userInfo.uid,
+        orderId: "",
       };
       const batch = writeBatch(db);
       const ids = cart.map((prod) => prod.id);
@@ -56,48 +82,60 @@ export const OrdersProvider = ({ children }) => {
         await batch.commit();
         const ordenRef = collection(db, "Ordenes-infinity-ecommerce");
         const orderAdded = await addDoc(ordenRef, order);
-        toast(`✅ Se generó correctamente la orden de compra "${orderAdded.id}"`);
-        setOrderList([...orderList, orderAdded.id]);
-        handleOrdersListToUser();
+        toast(
+          `✅ Se generó correctamente la orden de compra "${orderAdded.id}"`
+        );
+        // setOrderList([orderAdded.id, ...orderList]);
+        // handleOrdersListToUser();
         clearCart();
+        getOrdersFromDb()
         navigate("/orders");
       } else {
         toast(`❌ Hay productos fuera del stock`);
       }
-    }
-    catch (error) {
-      console.error(error)
+    } catch (error) {
+      console.error(error);
     } finally {
-      setOrderIsLoading(false)
+      setOrderIsLoading(false);
     }
-  }
+  };
   const handleChange = (event) => {
     setUserInfo((userInfo) => ({
       ...userInfo,
       [event.target.name]: event.target.value,
     }));
   };
-  const handleOrdersListToUser = () => {
-    setUserInfo({ ...userInfo, orders: orderList });
-  };
+
   const getTotalOrders = () => {
-    const totalOrders = orderList.length;
+    const totalOrders = ordersFromDb.length;
     return totalOrders;
   };
   const clearOrderList = () => {
-    setOrderList([]);
+    setOrdersFromDb([]);
+  };
+  const clearAllLocalData = () => {
+    clearOrderList();
+    clearCart();
+    handleClearUserLocalData();
+  };
+  const getDate = () => {
+    const date = Timestamp.now().toDate().toString();
+    return date;
   };
   return (
     <OrdersContext.Provider
       value={{
-        orderList,
-        setOrderList,
         orderIsLoading,
         setOrderIsLoading,
         getTotalOrders,
         clearOrderList,
         handleCreateOrder,
         handleChange,
+        handleChangeOrderState,
+        clearAllLocalData,
+        getOrdersFromDb,
+        ordersFromDb,
+        setOrdersFromDb,
       }}
     >
       {children}

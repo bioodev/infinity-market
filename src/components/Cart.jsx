@@ -4,7 +4,8 @@ import { FaMinusCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { cart, removeProduct, getTotalCart } = useContext(CartContext);
+  const { cart, removeProduct, getTotalCart, clearCart } =
+    useContext(CartContext);
   const handleRemove = (id) => removeProduct(id);
   const navigate = useNavigate();
   return (
@@ -46,25 +47,31 @@ const Cart = () => {
       )}
       {getTotalCart() < 1 ? (
         <div className="grid items-center justify-center w-full grid-cols-1 gap-4 text-center lg:w-96 md:w-96">
-          <div className="px-4 py-2">Carro vacío</div>
+          <div className="px-4 py-2">🏳️ Carro vacío</div>
           <button
             className="px-4 py-2 m-auto text-white bg-black rounded shadow-sm hover:bg-emerald-600 hover:shadow-md"
             onClick={() => navigate("/")}
           >
-            Agregar productos
+            ➕ Agregar productos
           </button>
         </div>
       ) : (
         <>
           <div className="flex flex-col items-center justify-center w-full gap-4 m-auto font-black text-md lg:w-96 md:w-96">
             <div className="w-full px-4 py-2 text-center bg-white rounded shadow-sm">
-              Total: ${getTotalCart()}
+              💲 Total: ${getTotalCart()}
             </div>
             <button
               className="w-full px-4 py-2 text-center text-white bg-black rounded shadow-sm hover:bg-emerald-600 hover:shadow-md lg:col-span-2"
               onClick={() => navigate("/checkout")}
             >
-              Confirmar compra
+              ✔️ Confirmar compra
+            </button>
+            <button
+              className="w-full px-4 py-2 text-center text-black rounded shadow-sm hover:shadow-md lg:col-span-2"
+              onClick={() => clearCart()}
+            >
+              🧹 Vaciar carrito
             </button>
           </div>
         </>

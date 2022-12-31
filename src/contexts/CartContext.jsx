@@ -8,7 +8,7 @@ export const CartProvider = ({ children }) => {
   const addToCart = (productToAdd) => {
     if (!isInCart(productToAdd.id)) {
       setCart([...cart, productToAdd]);
-      toast(`✅ Se agregó ${productToAdd.quantity} de "${productToAdd.name}"`);
+      toast(`✅ Se agregó "${productToAdd.name} al carrito de compra"`);
     }
   };
   const isInCart = (id) => {
